@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+
+
+#main_header {
+    position: fixed;
+    background-color: rgba(55, 55, 55, 0.98);
+    height: 52px;
+    width: 100%;
+}
+
+.header_menu {
+    position: absolute;
+    background-color: rgba(55, 55, 55, 0.98);
+    list-style: none;
+
+    margin-top: 52px;
+    padding: 0 0 10px 0;
+
+    height: auto;
+    width: 100%;
+
+    top: 0;
+    clear: both;
+
+    transition: 0.3s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
+    transform: scale(1, 0);
+    transform-origin: top;
+}
+
+.header_menu a {
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 0.5s;
+    opacity: 0;
+    color: #ddd;
+    letter-spacing: 2px;
+}
+
+.header_menu li {
+    border-top: 1px solid rgb(75, 75, 75);
+    padding: 15px 0;
+    margin: 0 54px;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.header_button:checked~.header_menu {
+    transform: scale(1, 1);
+    transform-origin: top;
+    transition: 0.3s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
+}
+
+.header_button:checked~.header_menu a,
+.header_button:checked~.header_menu li {
+    opacity: 1;
+    transition: 0.3s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.2s;
+}
+
+.header_button {
+    display: none;
+}
+
+.header_menu_icon {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    padding: 24px 14px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.header_icon {
+    background: #ddd;
+    display: block;
+    height: 3px;
+    width: 26px;
+    position: relative;
+    transition: 0.3s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
+}
+
+.header_icon:before,
+.header_icon:after {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: #ddd;
+    transition: 0.3s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
+}
+
+.header_icon:before {
+    top: 9px;
+}
+
+.header_icon:after {
+    bottom: 9px;
+}
+
+.header_button:checked~.header_menu_icon .header_icon:after {
+    transform: rotate(45deg);
+}
+
+.header_button:checked~.header_menu_icon .header_icon:before {
+    transform: rotate(-45deg);
+}
+
+.header_button:checked ~ .header_menu_icon:not(.steps) .header_icon:before {
+    top: 0;
+}
+
+.header_button:checked ~ .header_menu_icon:not(.steps) .header_icon:after {
+    bottom: 0;
+}
+
+.header_button:checked ~ .header_menu_icon .header_icon {
+    background: rgba(0, 0, 0, 0);
+    transition: 0.2s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
+}
+
+.header_container {
+    width: 100%;
+    height: 52px;
+    position: absolute;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_title {
+    position: absolute;
+    text-transform: uppercase;
+    color: #ddd;
+    letter-spacing: 4px;
+    font-size: 20px;
+}
+
+.toppage_icon {
+    padding-top: 5px;
+    height: 45px;
+}
+
+.top_filler {
+    height: 52px;
+}

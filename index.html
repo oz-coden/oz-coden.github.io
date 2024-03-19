@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<HTML lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./import.css">
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <title>ozawa's page on Github</title>
+</head>
+
+<body>
+
+    <header id="main_header">
+        <div class="header_container">
+            <div class="header_title"><img src="./image/TopPageIcon.png" alt="@oz_coden" class="toppage_icon"></div>
+        </div>
+        <input type="checkbox" id="header_button" class="header_button">
+        <label for="header_button" class="header_menu_icon"><span class="header_icon"></span></label>
+        <ul class="header_menu">
+            <li class="header_menu_top_item"><a href="#current_date">ホーム（ページの一番上に戻る）</a></li>
+            <li><a href="#toggle_menu_button_notion_schedule">スケジュール表</a></li>
+            <li><a href="#toggle_menu_button_pre_jindaisei">プレ神大生ページ</a></li>
+            <li><a href="#contact">contact</a></li>
+        </ul>
+    </header>
+
+    <div id="top_filler" class="top_filler"></div>
+
+    <div class="content_container">
+
+        <div class="alert_notation">
+            <p class="" style="color: #cc0000; ">注意：このサイトは個人が作成したものであり、この中に含まれるすべての要素において正しいことを保証するわけではありません。</p>
+            <p>詳しくはご自身でお確かめください。</p>
+            <p class="text_align_right">更新日：2024/03/19</p>
+        </div>
+
+        <p>
+            <span id="current_date">
+                <script>
+                    date = new Date();
+                    year = date.getFullYear();
+                    month = date.getMonth() + 1;
+                    day = date.getDate();
+                    document.getElementById("current_date").innerHTML = "今日の日付は " + year + "/" + month + "/" + day + " です。";
+                </script>
+            </span>
+            <span id="at_welcome_day">
+                <script>
+                    date = new Date();
+                    year = date.getFullYear();
+                    month = date.getMonth() + 1;
+                    day = date.getDate();
+
+                    if (year != 2024 || month != 3) {
+                        document.getElementById("at_welcome_day").innerHTML = "";
+                    } else if (28 - day > 0) {
+                        document.getElementById("at_welcome_day").innerHTML = "新入生歓迎会（情報学部）まではあと " + (28 - day) + "日です！";
+                    } else if (28 - day == 0) {
+                        document.getElementById("at_welcome_day").innerHTML = "今日が新入生歓迎会（情報学部）の日です！参加を申し込んだ方はお忘れなく、それとも終わった後だったらお疲れ様でした！";
+                    } else {
+                        document.getElementById("at_welcome_day").innerHTML = "";
+                    }
+                </script>
+            </span>
+        </p>
+
+
+
+        <div>
+            <input type="checkbox" id="toggle_menu_button_notion_schedule" class="toggle_menu_button">
+            <label class="toggle_menu_title" for="toggle_menu_button_notion_schedule">▼スケジュール表▼</label>
+            <div id="notion_schedule" class="toggle_menu_item">
+                <p>3/22から英語プレイスメントテストが受けられます。</p>
+                <p>3/28は新入生歓迎会（情報学部）です。</p>
+                <p>4/1は学生証交付日です。</p>
+                <p>4/3は入学式です。</p>
+                <div class="text_align_right">
+                    <a href="http://webcms3.kanagawa-u.ac.jp/cms-att/0011/bda2d57471bcbdba8e4f47d0e2b9f415.pdf"
+                        target="_blank">学修スタートガイドを確認する（押すとPDFがダウンロードされます／または、新しいタブで開きます）</a>
+                </div>
+                <div class="text_align_right">
+                    <a href="https://ozawa-k.notion.site/b8ce4f9d3b1e48e7a9d92820f8b74bd3?v=2ed5db9322c649c3be3ab86f49314088&pvs=74"
+                        target="_blank">Notionのページに飛んで確認する（新しいタブで開きます）</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="notion_schedule_space_filler" onclick="clicked_notion_toggle()">
+            <script>
+                function clicked_notion_toggle() {
+                    var height = document.getElementById("notion_schedule").clientHeight;
+                    document.getElementById("notion_schedule_space_filler").style == "height: " + height + ";";
+                }
+            </script>
+        </div>
+
+
+
+        <div>
+            <input type="checkbox" id="toggle_menu_button_pre_jindaisei" class="toggle_menu_button">
+            <label class="toggle_menu_title" for="toggle_menu_button_pre_jindaisei">▼プレ神大生ページ▼</label>
+            <div id="pre_jindaisei" class="toggle_menu_item">
+                <p>毎回確認することをお忘れなく！もしかしたら更新があるかもしれません。</p>
+                <ul>
+                    <li>
+                        郵送物についてのお知らせがあります。(3/4)
+
+
+
+                        <div>
+                            <input type="checkbox" id="toggle_menu_button_detail_post" class="toggle_menu_button">
+                            <label class="toggle_menu_title" for="toggle_menu_button_detail_post">▼郵便物の詳細▼</label>
+                            <div id="detail_post" class="toggle_menu_item">
+
+                                <ul>
+
+                                    <li>新入生郵送物について（裏面：学生保険について）</li>
+                                    <li>入学式のご案内</li>
+                                    <li>神奈川大学へ入学される皆さんへ</li>
+                                    <li>学生情報入力マニュアル</li>
+                                    <li>学研災公式アプリ（Skett Book）登録案内用チラシ（兼加入者のしおりチラシ）</li>
+                                    <li>神奈川大学学生総合補償制度のご案内</li>
+                                    <li>宮陵会報 -祝入学-</li>
+                                    <li>神奈川大学資格取得講座ガイドブック</li>
+                                    <li>2024年度学修スタートガイド</li>
+
+                                </ul>
+
+                            </div>
+                        </div>
+
+                        <div id="detail_post_space_filler" onclick="clicked_detail_post_toggle()">
+                            <script>
+                                function clicked_detail_post_toggle() {
+                                    var height = document.getElementById("detail_post").clientHeight;
+                                    document.getElementById("detail_post_space_filler").style == "height: " + height + ";";
+                                }
+                            </script>
+                        </div>
+
+
+
+                    </li>
+                    <li>
+                        健康診断についてのお知らせがあります。(3/4)
+                    </li>
+                </ul>
+
+
+
+
+                <div class="text_align_right">
+                    <a href="https://www.kanagawa-u.ac.jp/prejindai/" target="_blank">プレ神大生のページに飛んで確認する（新しいタブで開きます）</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="pre_jindaisei_space_filler" onclick="clicked_prejindaisei_toggle()">
+            <script>
+                function clicked_prejindaisei_toggle() {
+                    var height = document.getElementById("pre_jindaisei_schedule").clientHeight;
+                    document.getElementById("pre_jindaisei_space_filler").style == "height: " + height + ";";
+                }
+            </script>
+        </div>
+
+
+
+        
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <p>aiueo</p>
+
+
+    </div>
+
+
+
+
+
+
+
+</body>
+
+</HTML>
