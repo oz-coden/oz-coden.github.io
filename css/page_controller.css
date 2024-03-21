@@ -73,3 +73,22 @@
     border-radius: 1rem;
     
 }
+
+.text_2rem {
+    font-size: 2rem;
+}
+
+.flexible_container {
+    display:flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.floatize_left {
+    float: left;
+}
+
+.floatize_right {
+    float: right;
+}

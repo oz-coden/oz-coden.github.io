@@ -42,3 +42,9 @@
     overflow: hidden;
 
 }
+
+
+.nested_toggle_menu {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
