@@ -34,7 +34,7 @@
         <div class="alert_notation">
             <p class="" style="color: #cc0000; ">注意：このサイトは個人が作成したものであり、この中に含まれるすべての要素において正しいことを保証するわけではありません。</p>
             <p>詳しくはご自身でお確かめください。</p>
-            <p class="text_align_right">更新日：2024/03/19</p>
+            <p class="text_align_right">更新日：2024/04/01</p>
         </div>
 
         <p>
@@ -47,35 +47,55 @@
                     document.getElementById("current_date").innerHTML = "今日の日付は " + year + "/" + month + "/" + day + " です。";
                 </script>
             </span>
-            <span id="at_welcome_day">
-                <script>
-                    date = new Date();
-                    year = date.getFullYear();
-                    month = date.getMonth() + 1;
-                    day = date.getDate();
-
-                    if (year != 2024 || month != 3) {
-                        document.getElementById("at_welcome_day").innerHTML = "";
-                    } else if (28 - day > 0) {
-                        document.getElementById("at_welcome_day").innerHTML = "新入生歓迎会（情報学部）まではあと " + (28 - day) + "日です！";
-                    } else if (28 - day == 0) {
-                        document.getElementById("at_welcome_day").innerHTML = "今日が新入生歓迎会（情報学部）の日です！参加を申し込んだ方はお忘れなく、それとも終わった後だったらお疲れ様でした！";
-                    } else {
-                        document.getElementById("at_welcome_day").innerHTML = "";
-                    }
-                </script>
-            </span>
         </p>
 
-
-
-        <p>【重要】2024/03/22の15時からTOEIC Bridgeが受けられます。</p>
 
 
 
 
 
         <p>※▼テキスト▼と書いてある灰色の領域は、クリックまたはタップすることで開けます。</p>
+
+        <div>
+            <input type="checkbox" id="toggle_menu_button_useful_urls" class="toggle_menu_button">
+            <label class="toggle_menu_title" for="toggle_menu_button_useful_urls">▼神奈川大学の重要なリンク集▼</label>
+            <div id="useful_urls" class="toggle_menu_item">
+
+                <p>▼神奈川大学｜公式サイトTOP▼</p>
+                <a href="https://www.kanagawa-u.ac.jp/">https://www.kanagawa-u.ac.jp/</a>
+                <p>▼神奈川大学｜問い合わせ▼</p>
+                <a href="https://www.kanagawa-u.ac.jp/contact/">https://www.kanagawa-u.ac.jp/contact/</a>
+                
+                <p>▼神奈川大学｜プレ神大生▼</p>
+                <a href="https://www.kanagawa-u.ac.jp/prejindai">https://www.kanagawa-u.ac.jp/prejindai</a>
+                <p>▼神奈川大学｜学修スタートガイド（PDF）▼</p>
+                <a href="https://www.kanagawa-u.ac.jp/cr_att/0011/27480_90664_010.pdf">https://www.kanagawa-u.ac.jp/cr_att/0011/27480_90664_010.pdf</a>
+                
+                <p>▼神奈川大学｜WebSt@tion▼</p>
+                <a href="https://www.kanagawa-u.ac.jp/webstation/">https://www.kanagawa-u.ac.jp/webstation/</a>
+                <p>▼神奈川大学｜WebSt@tionマニュアル（Box）▼</p>
+                <a href="https://kanagawa-u.ent.box.com/s/cf6uqfsc9jz31y1g1k41wlsxrsqeu1a0">https://kanagawa-u.ent.box.com/s/cf6uqfsc9jz31y1g1k41wlsxrsqeu1a0</a>
+                <p>▼神奈川大学｜ガイダンス・履修登録ーオリエンテーション（Box）▼</p>
+                <a href="https://kanagawa-u.ent.box.com/s/x5861f6eg3j917j4a35x7ofif7v6khhk">https://kanagawa-u.ent.box.com/s/x5861f6eg3j917j4a35x7ofif7v6khhk</a>
+                <p>▼神奈川大学｜シラバス・履修要覧・時間割表▼</p>
+                <a href="https://webstation.kanagawa-u.ac.jp/html/kyoumu/index.html">https://webstation.kanagawa-u.ac.jp/html/kyoumu/index.html</a>
+                <p>▼神奈川大学｜時間割コードの説明資料（Box）▼</p>
+                <a href="https://kanagawa-u.ent.box.com/s/d0shn41dld1dwvnpoabtqaqzu0kj698w">https://kanagawa-u.ent.box.com/s/d0shn41dld1dwvnpoabtqaqzu0kj698w</a>
+
+                <hr>
+                
+                <p>▼神奈川大学生協▼</p>
+                <a href="https://www.ku-coop.org/">https://www.ku-coop.org/</a>
+                <p>▼神奈川大学生協｜営業日程・時間▼</p>
+                <a href="https://www.ku-coop.org/top/b_hours/">https://www.ku-coop.org/top/b_hours</a>
+
+                
+            </div>
+        </div>
+
+
+
+        
         <div>
             <input type="checkbox" id="toggle_menu_button_notion_schedule" class="toggle_menu_button">
             <label class="toggle_menu_title" for="toggle_menu_button_notion_schedule">▼スケジュール表▼</label>
