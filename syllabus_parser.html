@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>コース情報取得</title>
+    <title>シラバス読みマスくん</title>
 </head>
 <body>
-    <input type="text" id="urlInput" placeholder="URLを入力してください">
+    <input type="text" id="urlInput" placeholder="シラバスのURLを入力してください">
     <button onclick="fetchCourseInfo()">情報を取得</button>
     <div id="courseInfo"></div>
 
@@ -59,17 +59,7 @@
 
         function displayCourseInfo(courseInfo) {
             const courseInfoDiv = document.getElementById('courseInfo');
-            courseInfoDiv.innerHTML = `
-                <p>科目名：${courseInfo.courseName}</p>
-                <p>コード：${courseInfo.courseCode}</p>
-                <p>開講所属：${courseInfo.courseOffered}</p>
-                <p>開講日時：${courseInfo.courseDate}</p>
-                <p>単位数：${courseInfo.courseCredits}</p>
-                <p>主教員：${courseInfo.courseInstructorMain}</p>
-                <p>副教員：${courseInfo.courseInstructorAssistant}</p>
-                <p>講堂場所：${courseInfo.courseClassroom}</p>
-                <p>使用書：${courseInfo.courseTextbook}</p>
-            `;
+            courseInfoDiv.innerHTML = "<p>科目名：${courseInfo.courseName}</p><p>コード：${courseInfo.courseCode}</p><p>開講所属：${courseInfo.courseOffered}</p><p>開講日時：${courseInfo.courseDate}</p><p>単位数：${courseInfo.courseCredits}</p><p>主教員：${courseInfo.courseInstructorMain}</p><p>副教員：${courseInfo.courseInstructorAssistant}</p><p>講堂場所：${courseInfo.courseClassroom}</p><p>使用書：${courseInfo.courseTextbook}</p>";
         }
     </script>
 </body>
