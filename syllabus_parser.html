@@ -13,8 +13,10 @@
     <script>
         async function fetchCourseInfo() {
             const urlInput = document.getElementById('urlInput').value.trim();
+            const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+            const apiUrl = proxyUrl + urlInput;
             try {
-                const response = await fetch(urlInput);
+                const response = await fetch(apiUrl);
                 const html = await response.text();
                 const courseInfo = getCourseInfo(html);
                 displayCourseInfo(courseInfo);
