@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コース情報取得</title>
+</head>
+<body>
+    <input type="text" id="urlInput" placeholder="URLを入力してください">
+    <button onclick="fetchCourseInfo()">情報を取得</button>
+    <div id="courseInfo"></div>
+
+    <script>
+        async function fetchCourseInfo() {
+            const urlInput = document.getElementById('urlInput').value.trim();
+            try {
+                const response = await fetch(urlInput);
+                const html = await response.text();
+                const courseInfo = getCourseInfo(html);
+                displayCourseInfo(courseInfo);
+            } catch (error) {
+                console.error('エラーが発生しました:', error);
+            }
+        }
+
+        function getCourseInfo(html) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+
+            const basicInformations = doc.querySelectorAll('table')[0].querySelectorAll('tr');
+            const detailedInformations = doc.querySelectorAll('table')[1].querySelectorAll('tr');
+
+            const courseName = trimSyllabus(basicInformations[0].querySelectorAll('td')[0].innerHTML);
+            const courseCode = trimSyllabus(basicInformations[1].querySelectorAll('td')[0].innerHTML);
+            const courseOffered = trimSyllabus(basicInformations[2].querySelectorAll('td')[0].innerHTML);
+            const courseDate = trimSyllabus(basicInformations[4].querySelectorAll('td')[0].innerHTML);
+            const courseCredits = trimSyllabus(basicInformations[6].querySelectorAll('td')[0].innerHTML);
+            const courseInstructorMain = trimSyllabus(basicInformations[7].querySelectorAll('td')[0].innerHTML);
+            const courseInstructorAssistant = trimSyllabus(basicInformations[8].querySelectorAll('td')[0].innerHTML);
+            const courseClassroom = trimSyllabus(basicInformations[9].querySelectorAll('td')[0].innerHTML);
+            const courseTextbook = trimSyllabus(detailedInformations[26].querySelectorAll('td')[0].innerHTML);
+
+            return {
+                courseName,
+                courseCode,
+                courseOffered,
+                courseDate,
+                courseCredits,
+                courseInstructorMain,
+                courseInstructorAssistant,
+                courseClassroom,
+                courseTextbook
+            };
+        }
+
+        function trimSyllabus(string) {
+            return string.replace("<td class=\"syllabus-break-word\">","").replace("</td>","").trim();
+        }
+
+        function displayCourseInfo(courseInfo) {
+            const courseInfoDiv = document.getElementById('courseInfo');
+            courseInfoDiv.innerHTML = `
+                <p>科目名：${courseInfo.courseName}</p>
+                <p>コード：${courseInfo.courseCode}</p>
+                <p>開講所属：${courseInfo.courseOffered}</p>
+                <p>開講日時：${courseInfo.courseDate}</p>
+                <p>単位数：${courseInfo.courseCredits}</p>
+                <p>主教員：${courseInfo.courseInstructorMain}</p>
+                <p>副教員：${courseInfo.courseInstructorAssistant}</p>
+                <p>講堂場所：${courseInfo.courseClassroom}</p>
+                <p>使用書：${courseInfo.courseTextbook}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
