@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<HTML lang="ja">
+
+<head>
+    <base href="./">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="./import.css">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="language" content="Japanese">
+    <meta name="description" content="HSTは、高度な検索機能とポータル機能を兼ね備えたサイトです。" />
+
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:site_name" content="HST">
+    <meta property="og:description" content="HSTは、高度な検索機能とポータル機能を兼ね備えたサイトです。">
+    <meta property="twitter:description" content="HSTは、高度な検索機能とポータル機能を兼ね備えたサイトです。">
+
+    <meta property="og:title" content="HST">
+    <title>HST</title>
+</head>
+
+<body>
+
+    <!--
+    <header style="text-align: center;">
+        <p style="font-size: 2rem;">HST</p>
+    </header>
+    <hr>
+    -->
+
+    <label for="search_key">
+        <div>
+            <input id="search_key" type="text" name="search_key" value="" placeholder="簡易型検索（通常）..." autocapitalize="off"
+                autocomplete="off" autocorrect="off" maxlength="2048" spellcheck="false" autofocus
+                list="cookie_history">
+            <datalist id="cookie_history">
+                <option value></option>
+            </datalist>
+        </div>
+    </label>
+    <div class="body_content">
+        <details class="search_option">
+            <summary id="summary_advanced_search">詳細型検索</summary>
+
+            <div class="fat_fit">
+                <hr>
+            </div>
+
+            <div class="fat_fit">
+                <label class="label_align" for="search_key_all_keywords">すべてのキーワードを含む：</label><input
+                    id="search_key_all_keywords" type="text" name="search_key_all_keywords" value=""
+                    placeholder="すべてのキーワードを含む..." autocapitalize="off" autocomplete="off" autocorrect="off"
+                    maxlength="2048" spellcheck="false" class="input_adjust">
+            </div>
+            <div class="fat_fit">
+                <label class="label_align" for="search_key_all_complete">語順含め完全一致：</label><input
+                    id="search_key_all_complete" type="text" name="search_key_all_complete" value=""
+                    placeholder="語順含め完全一致..." autocapitalize="off" autocomplete="off" autocorrect="off" maxlength="2048"
+                    spellcheck="false" class="input_adjust">
+            </div>
+            <div class="fat_fit">
+                <label class="label_align" for="search_key_any_keywords">いずれかのキーワードを含む：</label><input
+                    id="search_key_any_keywords" type="text" name="search_key_any_keywords" value=""
+                    placeholder="いずれかのキーワードを含む..." autocapitalize="off" autocomplete="off" autocorrect="off"
+                    maxlength="2048" spellcheck="false" class="input_adjust">
+            </div>
+            <div class="fat_fit">
+                <label class="label_align" for="search_key_not_keywords">次のキーワードを含まない：</label><input
+                    id="search_key_not_keywords" type="text" name="search_key_not_keywords" value=""
+                    placeholder="次のキーワードを含まない..." autocapitalize="off" autocomplete="off" autocorrect="off"
+                    maxlength="2048" spellcheck="false" class="input_adjust">
+            </div>
+            <!--
+            <div class="fat_fit">
+            <label class="label_align" for="search_key_range_start">数値の範囲指定：</label><input id="search_key_range_start"
+                type="text" name="search_key_range_start" value="" placeholder="数値の範囲指定..." autocapitalize="off"
+                autocomplete="off" autocorrect="off" maxlength="2048" spellcheck="false" class="input_range_adjust"> ~ <input
+                id="search_key_range_end" type="text" name="search_key_range_end" value="" placeholder="数値の範囲指定..."
+                autocapitalize="off" autocomplete="off" autocorrect="off" maxlength="2048" spellcheck="false" class="input_range_adjust">
+            </div>
+            -->
+            <div class="fat_fit">
+                <label class="label_align" for="search_key_site_domain_type">サイトまたはドメインの指定：</label><input
+                    id="search_key_site_domain_type" type="text" name="search_key_site_domain_type" value=""
+                    placeholder="サイトまたはドメインの指定..." autocapitalize="off" autocomplete="off" autocorrect="off"
+                    maxlength="2048" spellcheck="false" class="input_adjust">
+            </div>
+
+            <input type="button" id="advanced_search" name="advanced_search" value="詳細型検索を実行" class="advanced_search_button">
+
+            <p>Googleが提供する詳細型検索ページもあります：</p>
+            <div class="flexible_container">
+                <a class="search_another_option_button" href="https://www.google.com/advanced_search"
+                    target="_blank">Google - アドバンスド文字検索</a>
+                <a class="search_another_option_button" href="https://www.google.com/advanced_image_search"
+                    target="_blank">Google - アドバンスド画像検索</a>
+            </div>
+        </details>
+    </div>
+
+    <div class="body_content">
+        <details class="search_option">
+            <summary id="summary_search_engine">検索エンジンの変更</summary>
+            <hr>
+            <label for="search_engine">現在選択されている検索エンジン：</label>
+            <select id="search_engine" name="検索エンジン">
+                <option value="www.google.com/search?q=" selected>Google.com</option>
+                <option value="www.bing.com/search?q=">Bing.com</option>
+                <option value="search.brave.com/search?q=">Brave.com</option>
+                <option value="duckduckgo.com/?q=">DuckDuckGo.com</option>
+                <option value="search.yahoo.co.jp/search?p=">Yahoo.co.jp</option>
+            </select>
+        </details>
+    </div>
+
+    <hr>
+
+
+
+
+
+    <script src="./js/event_handler.js"></script>
+    <script src="./js/search.js"></script>
+    <script src="./js/advanced_search.js"></script>
+</body>
+
+</HTML>

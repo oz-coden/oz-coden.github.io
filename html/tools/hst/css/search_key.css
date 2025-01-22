@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+#search_key {
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    height: 2rem;
+    width: 75%;
+    size: 2rem;
+
+    border-width: 2px;
+    border-color: light-dark(black, lightgray);
+    border-style: solid;
+    border-radius: 3rem;
+
+    font-size: 1.25rem;
+}
