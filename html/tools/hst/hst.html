@@ -33,8 +33,9 @@
 
     <label for="search_key">
         <div>
-            <input id="search_key" type="text" name="search_key" value="" placeholder="簡易型検索（通常）..." autocapitalize="off"
-                autocomplete="off" autocorrect="off" maxlength="2048" spellcheck="false" autofocus
+            <input id="search_button" type="button" name="search_button" class="search_button" value="🔍">
+            <input id="search_key" type="text" name="search_key" value="" placeholder="簡易型検索（通常）..."
+                autocapitalize="off" autocomplete="off" autocorrect="off" maxlength="2048" spellcheck="false" autofocus
                 list="cookie_history">
             <datalist id="cookie_history">
                 <option value></option>
@@ -89,7 +90,8 @@
                     maxlength="2048" spellcheck="false" class="input_adjust">
             </div>
 
-            <input type="button" id="advanced_search" name="advanced_search" value="詳細型検索を実行" class="advanced_search_button">
+            <input type="button" id="advanced_search" name="advanced_search" value="詳細型検索を実行"
+                class="advanced_search_button">
 
             <p>Googleが提供する詳細型検索ページもあります：</p>
             <div class="flexible_container">

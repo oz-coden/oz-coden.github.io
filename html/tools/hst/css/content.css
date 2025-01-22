@@ -1,14 +1,42 @@
 @charset "UTF-8";
 
-.body_content {
-    margin-top: 3px;
-    margin-bottom: 3px;
-    margin-left: 12.5%;
-    margin-right: 12.5%;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
+@media screen and (max-width: 699px) {
+    .body_content {
+        margin-top: 3px;
+        margin-bottom: 3px;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+@media screen and (max-width: 999px) {
+    .body_content {
+        margin-top: 3px;
+        margin-bottom: 3px;
+        margin-left: 7.5%;
+        margin-right: 7.5%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .body_content {
+        margin-top: 3px;
+        margin-bottom: 3px;
+        margin-left: 12.5%;
+        margin-right: 12.5%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }
 
 .fat_fit{

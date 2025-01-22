@@ -15,10 +15,58 @@
     width: 75%;
     size: 2rem;
 
+    background-color: lightdark(white, black);
+    color: light-dark(black, white);
     border-width: 2px;
     border-color: light-dark(black, lightgray);
     border-style: solid;
     border-radius: 3rem;
 
     font-size: 1.25rem;
+}
+
+#search_button {
+    
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+
+    font-size: 2rem;
+    size: 2rem;
+    position: absolute;
+
+    background-color: lightdark(white, black);
+    color: light-dark(black, white);
+    border-color: light-dark(black, lightgray);
+    border-left-width: 2px;
+    border-top-right-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+
+    top: 10px;
+
+    left: auto;
+    right: 0px;
+}
+
+@media screen and (max-width: 699px) {
+    #search_button {
+        right: 0px;
+    }
+}
+
+@media screen and (max-width: 999px) {
+    #search_button {
+        right: 5%;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #search_button {
+        right: 10%;
+    }
 }
