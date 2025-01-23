@@ -51,6 +51,8 @@
 
     left: auto;
     right: 0px;
+
+    cursor: pointer;
 }
 
 @media screen and (max-width: 699px) {

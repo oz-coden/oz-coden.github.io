@@ -1,9 +1,9 @@
 function advancedSearchPress() {
-    let search_key_all_keywords = document.getElementById("search_key_all_keywords").value;
-    let b_search_key_all_complete = document.getElementById("search_key_all_complete").value;
-    let b_search_key_any_keywords = document.getElementById("search_key_any_keywords").value;
-    let b_search_key_not_keywords = document.getElementById("search_key_not_keywords").value;
-    let b_search_key_site_domain_type = document.getElementById("search_key_site_domain_type").value;
+    let search_key_all_keywords = document.getElementById("search_key_all_keywords").value.trimEnd(" ").trimEnd("　");
+    let b_search_key_all_complete = document.getElementById("search_key_all_complete").value.trimEnd(" ").trimEnd("　");
+    let b_search_key_any_keywords = document.getElementById("search_key_any_keywords").value.trimEnd(" ").trimEnd("　");
+    let b_search_key_not_keywords = document.getElementById("search_key_not_keywords").value.trimEnd(" ").trimEnd("　");
+    let b_search_key_site_domain_type = document.getElementById("search_key_site_domain_type").value.trimEnd(" ").trimEnd("　");
 
     if (search_key_all_keywords == "" && b_search_key_all_complete == "" && b_search_key_any_keywords == "" && b_search_key_not_keywords == "") {
         return;
@@ -15,7 +15,7 @@ function advancedSearchPress() {
 
     let search_key_not_keywords = ("-" + b_search_key_not_keywords).split(" ").join(" -").split("　").join(" -");
 
-    let search_key_site_domain_type = "site:" + b_search_key_site_domain_type.replace(" ", "").replace("　", "");
+    let search_key_site_domain_type = "site:" + b_search_key_site_domain_type.replace(" ", " OR site:").replace("　", " OR site:");
 
     let engine = document.getElementById('search_engine').value;
 

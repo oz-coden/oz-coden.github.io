@@ -42,3 +42,7 @@
 .fat_fit{
     width: 100%;
 }
+
+.pointer {
+    cursor: pointer;
+}
