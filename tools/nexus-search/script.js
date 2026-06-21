@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const htmlEl = document.documentElement;
     const engineSelect = document.getElementById("search_engine");
 
-    // --- テーマ切り替え ---
     const themeBtn = document.getElementById("theme_toggle");
     const savedTheme = localStorage.getItem("theme") || "light";
     htmlEl.setAttribute("data-theme", savedTheme);
@@ -15,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
         themeBtn.textContent = newTheme === "light" ? "🌙" : "☀️";
     });
 
-    // --- 検索エンジンの永続化 ---
     const savedEngine = localStorage.getItem("search_engine_pref");
     if (savedEngine) engineSelect.value = savedEngine;
 
@@ -23,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("search_engine_pref", engineSelect.value);
     });
 
-    // --- 検索実行 & 履歴保存 ---
     let history = JSON.parse(localStorage.getItem("search_history") || "[]");
     const searchInput = document.getElementById("search_key");
     const dropdown = document.getElementById("history_dropdown");
@@ -67,13 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
         window.open(`https://${engineSelect.value}${encodeURIComponent(trimmed)}`, '_blank');
     };
 
-    // --- 通常検索イベント ---
     document.getElementById("search_button").addEventListener("click", () => executeSearch(searchInput.value));
     searchInput.addEventListener("keydown", (e) => {
         if (e.key === "Enter") executeSearch(searchInput.value);
     });
 
-    // ショートカット ( '/' でフォーカス )
     document.addEventListener("keydown", (e) => {
         if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
             e.preventDefault();
@@ -81,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // --- 詳細検索イベント ---
     document.getElementById("advanced_search").addEventListener("click", () => {
         const all = document.getElementById("adv_all").value.trim();
         const exact = document.getElementById("adv_exact").value.trim();
@@ -106,22 +100,18 @@ document.addEventListener("DOMContentLoaded", () => {
         executeSearch(query.join(" "));
     });
 
-    // --- ブックマーク機能 ---
     let bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
     const bmGrid = document.getElementById("bookmarks_grid");
 
-    // 追加モーダル要素
     const addModal = document.getElementById("bookmark_modal");
     const bookmarkForm = document.getElementById("bookmark_form");
     const titleInput = document.getElementById("modal_title");
     const urlInput = document.getElementById("modal_url");
 
-    // 削除モーダル要素
     const deleteModal = document.getElementById("delete_modal");
     const deleteTargetName = document.getElementById("delete_target_name");
     let deleteTargetIndex = -1;
 
-    // 描画処理
     const renderBookmarks = () => {
         bmGrid.innerHTML = "";
         bookmarks.forEach((bm, i) => {
@@ -135,19 +125,16 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     renderBookmarks();
 
-    // 1. 追加モーダルを開く
     document.getElementById("add_bookmark_btn").addEventListener("click", () => {
         titleInput.value = ""; 
         urlInput.value = "";
         addModal.showModal(); 
     });
 
-    // 2. 追加モーダルを閉じる (キャンセル)
     document.getElementById("modal_cancel").addEventListener("click", () => addModal.close());
 
-    // 3. 追加モーダルの保存 (formのsubmitで実行されるためEnterキーも対応)
     bookmarkForm.addEventListener("submit", (e) => {
-        e.preventDefault(); // 画面リロードを防止
+        e.preventDefault();
 
         const title = titleInput.value.trim();
         let url = urlInput.value.trim();
@@ -161,20 +148,17 @@ document.addEventListener("DOMContentLoaded", () => {
         addModal.close();
     });
 
-    // 4. ブックマークの削除ボタンが押されたとき (削除モーダルを開く)
     bmGrid.addEventListener("click", (e) => {
         if (e.target.tagName === "BUTTON") {
-            e.preventDefault(); // リンクへの遷移を防ぐ
+            e.preventDefault();
             deleteTargetIndex = e.target.getAttribute("data-index");
             deleteTargetName.textContent = `「${bookmarks[deleteTargetIndex].title}」を削除しますか？`;
             deleteModal.showModal();
         }
     });
 
-    // 5. 削除キャンセル
     document.getElementById("delete_cancel").addEventListener("click", () => deleteModal.close());
 
-    // 6. 削除実行
     document.getElementById("delete_execute").addEventListener("click", () => {
         if (deleteTargetIndex > -1) {
             bookmarks.splice(deleteTargetIndex, 1);
@@ -184,7 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteModal.close();
     });
 
-    // --- モーダル外（背景）をクリックで閉じる共通処理 ---
     const closeOnOutsideClick = (modalElement) => {
         modalElement.addEventListener("click", (e) => {
             const rect = modalElement.getBoundingClientRect();
