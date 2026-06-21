@@ -15,8 +15,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
 }
-
 header {
     margin: 4rem 0 2rem;
     text-align: center;
@@ -94,4 +94,18 @@ header {
 
 .card-group:hover .card-github {
     box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+footer {
+    margin-top: auto;
+    padding: 2rem 0;
+    text-align: center;
+    width: 100%;
+}
+
+footer p {
+    color: var(--text-sub);
+    font-size: 0.85rem;
+    margin: 0;
+    letter-spacing: 0.05em;
 }
