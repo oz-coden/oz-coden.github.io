@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Search</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <main class="container">
+        <header class="header">
+            <button id="theme_toggle" class="btn-icon theme-toggle" aria-label="テーマ切り替え">🌙</button>
+            <h1>Nexus Search</h1>
+        </header>
+
+        <section class="card">
+            <div class="search-box">
+                <div class="search-input-wrapper">
+                    <input id="search_key" type="text" placeholder="検索... ( '/' でフォーカス)" autocomplete="off" autofocus>
+                    <ul id="history_dropdown" class="history-dropdown"></ul>
+                </div>
+                <button id="search_button" class="btn-icon" aria-label="検索">🔍</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="flex-between">
+                <h2>ブックマーク</h2>
+                <button id="add_bookmark_btn" class="btn-small">+ 追加</button>
+            </div>
+            <div id="bookmarks_grid" class="grid"></div>
+        </section>
+
+        <details open class="card">
+            <summary>詳細型検索</summary>
+            <div class="content">
+                <label>すべて含む: <input id="adv_all" type="text" placeholder="例: Unity C#"></label>
+                <label>完全一致 (複数可, カンマ区切り): <input id="adv_exact" type="text" placeholder="例: Netcode for GameObjects, Unity 6"></label>
+                <label>いずれか含む: <input id="adv_any" type="text"></label>
+                <label>含まない: <input id="adv_not" type="text"></label>
+                <label>サイト指定: <input id="adv_site" type="text" placeholder="例: github.com"></label>
+                <button id="advanced_search" class="btn-primary">詳細検索を実行</button>
+            </div>
+        </details>
+
+        <details open class="card">
+            <summary>設定</summary>
+            <div class="content">
+                <label>検索エンジン:
+                    <select id="search_engine">
+                        <option value="www.google.com/search?q=" selected>Google</option>
+                        <option value="www.bing.com/search?q=">Bing</option>
+                        <option value="search.brave.com/search?q=">Brave</option>
+                        <option value="duckduckgo.com/?q=">DuckDuckGo</option>
+                        <option value="search.yahoo.co.jp/search?p=">Yahoo Japan</option>
+                    </select>
+                </label>
+            </div>
+        </details>
+    </main>
+
+    <dialog id="bookmark_modal" class="modal">
+        <form id="bookmark_form" class="modal-content">
+            <h3>ブックマークを追加</h3>
+            <label>サイト名: 
+                <input type="text" id="modal_title" placeholder="例: GitHub">
+            </label>
+            <label>URL: 
+                <input type="url" id="modal_url" placeholder="例: https://github.com">
+            </label>
+            <div class="modal-actions">
+                <button type="button" id="modal_cancel" class="btn-cancel">キャンセル</button>
+                <button type="submit" id="modal_save" class="btn-primary" style="width: auto; margin-top: 0;">保存</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="delete_modal" class="modal">
+        <div class="modal-content">
+            <h3>ブックマークの削除</h3>
+            <p id="delete_target_name" style="margin-top: 0; margin-bottom: 20px;"></p>
+            <div class="modal-actions">
+                <button type="button" id="delete_cancel" class="btn-cancel">キャンセル</button>
+                <button type="button" id="delete_execute" class="btn-danger" style="width: auto; margin-top: 0;">削除する</button>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="./script.js"></script>
+</body>
+</html>

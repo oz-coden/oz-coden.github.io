@@ -1,0 +1,199 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const htmlEl = document.documentElement;
+    const engineSelect = document.getElementById("search_engine");
+
+    // --- テーマ切り替え ---
+    const themeBtn = document.getElementById("theme_toggle");
+    const savedTheme = localStorage.getItem("theme") || "light";
+    htmlEl.setAttribute("data-theme", savedTheme);
+    themeBtn.textContent = savedTheme === "light" ? "🌙" : "☀️";
+
+    themeBtn.addEventListener("click", () => {
+        const newTheme = htmlEl.getAttribute("data-theme") === "light" ? "dark" : "light";
+        htmlEl.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        themeBtn.textContent = newTheme === "light" ? "🌙" : "☀️";
+    });
+
+    // --- 検索エンジンの永続化 ---
+    const savedEngine = localStorage.getItem("search_engine_pref");
+    if (savedEngine) engineSelect.value = savedEngine;
+
+    engineSelect.addEventListener("change", () => {
+        localStorage.setItem("search_engine_pref", engineSelect.value);
+    });
+
+    // --- 検索実行 & 履歴保存 ---
+    let history = JSON.parse(localStorage.getItem("search_history") || "[]");
+    const searchInput = document.getElementById("search_key");
+    const dropdown = document.getElementById("history_dropdown");
+
+    const updateHistoryUI = () => {
+        dropdown.innerHTML = "";
+        if (history.length === 0) return;
+        
+        history.forEach(k => {
+            const li = document.createElement("li");
+            li.className = "history-item";
+            li.innerHTML = `<span class="history-icon">🕒</span><span>${k}</span>`;
+            
+            li.addEventListener("mousedown", (e) => {
+                e.preventDefault(); 
+                searchInput.value = k;
+                executeSearch(k);
+            });
+            dropdown.appendChild(li);
+        });
+    };
+    updateHistoryUI();
+
+    searchInput.addEventListener("focus", () => {
+        if (history.length > 0) dropdown.style.display = "block";
+    });
+
+    searchInput.addEventListener("blur", () => {
+        dropdown.style.display = "none";
+    });
+
+    const executeSearch = (query) => {
+        const trimmed = query.trim();
+        if (!trimmed) return;
+
+        history = [trimmed, ...history.filter(k => k !== trimmed)].slice(0, 8);
+        localStorage.setItem("search_history", JSON.stringify(history));
+        updateHistoryUI();
+        dropdown.style.display = "none";
+
+        window.open(`https://${engineSelect.value}${encodeURIComponent(trimmed)}`, '_blank');
+    };
+
+    // --- 通常検索イベント ---
+    document.getElementById("search_button").addEventListener("click", () => executeSearch(searchInput.value));
+    searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") executeSearch(searchInput.value);
+    });
+
+    // ショートカット ( '/' でフォーカス )
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
+            e.preventDefault();
+            searchInput.focus();
+        }
+    });
+
+    // --- 詳細検索イベント ---
+    document.getElementById("advanced_search").addEventListener("click", () => {
+        const all = document.getElementById("adv_all").value.trim();
+        const exact = document.getElementById("adv_exact").value.trim();
+        const any = document.getElementById("adv_any").value.trim();
+        const not = document.getElementById("adv_not").value.trim();
+        const site = document.getElementById("adv_site").value.trim();
+
+        let query = [];
+        if (all) query.push(all);
+        
+        if (exact) {
+            const exactPhrases = exact.split(/[,、]/).map(s => s.trim()).filter(s => s !== "");
+            if (exactPhrases.length > 0) {
+                query.push(exactPhrases.map(p => `"${p}"`).join(" "));
+            }
+        }
+
+        if (any) query.push(`(${any.split(/\s+/).join(" OR ")})`);
+        if (not) query.push(not.split(/\s+/).map(w => `-${w}`).join(" "));
+        if (site) query.push(site.split(/\s+/).map(s => `site:${s}`).join(" OR "));
+
+        executeSearch(query.join(" "));
+    });
+
+    // --- ブックマーク機能 ---
+    let bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+    const bmGrid = document.getElementById("bookmarks_grid");
+
+    // 追加モーダル要素
+    const addModal = document.getElementById("bookmark_modal");
+    const bookmarkForm = document.getElementById("bookmark_form");
+    const titleInput = document.getElementById("modal_title");
+    const urlInput = document.getElementById("modal_url");
+
+    // 削除モーダル要素
+    const deleteModal = document.getElementById("delete_modal");
+    const deleteTargetName = document.getElementById("delete_target_name");
+    let deleteTargetIndex = -1;
+
+    // 描画処理
+    const renderBookmarks = () => {
+        bmGrid.innerHTML = "";
+        bookmarks.forEach((bm, i) => {
+            const el = document.createElement("a");
+            el.className = "bookmark-card";
+            el.href = bm.url;
+            el.target = "_blank";
+            el.innerHTML = `<span>${bm.title}</span><button data-index="${i}" title="削除">×</button>`;
+            bmGrid.appendChild(el);
+        });
+    };
+    renderBookmarks();
+
+    // 1. 追加モーダルを開く
+    document.getElementById("add_bookmark_btn").addEventListener("click", () => {
+        titleInput.value = ""; 
+        urlInput.value = "";
+        addModal.showModal(); 
+    });
+
+    // 2. 追加モーダルを閉じる (キャンセル)
+    document.getElementById("modal_cancel").addEventListener("click", () => addModal.close());
+
+    // 3. 追加モーダルの保存 (formのsubmitで実行されるためEnterキーも対応)
+    bookmarkForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // 画面リロードを防止
+
+        const title = titleInput.value.trim();
+        let url = urlInput.value.trim();
+
+        if (!title || !url) return;
+
+        url = url.startsWith("http") ? url : `https://${url}`;
+        bookmarks.push({ title, url });
+        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+        renderBookmarks();
+        addModal.close();
+    });
+
+    // 4. ブックマークの削除ボタンが押されたとき (削除モーダルを開く)
+    bmGrid.addEventListener("click", (e) => {
+        if (e.target.tagName === "BUTTON") {
+            e.preventDefault(); // リンクへの遷移を防ぐ
+            deleteTargetIndex = e.target.getAttribute("data-index");
+            deleteTargetName.textContent = `「${bookmarks[deleteTargetIndex].title}」を削除しますか？`;
+            deleteModal.showModal();
+        }
+    });
+
+    // 5. 削除キャンセル
+    document.getElementById("delete_cancel").addEventListener("click", () => deleteModal.close());
+
+    // 6. 削除実行
+    document.getElementById("delete_execute").addEventListener("click", () => {
+        if (deleteTargetIndex > -1) {
+            bookmarks.splice(deleteTargetIndex, 1);
+            localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+            renderBookmarks();
+        }
+        deleteModal.close();
+    });
+
+    // --- モーダル外（背景）をクリックで閉じる共通処理 ---
+    const closeOnOutsideClick = (modalElement) => {
+        modalElement.addEventListener("click", (e) => {
+            const rect = modalElement.getBoundingClientRect();
+            const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.bottom && rect.left <= e.clientX && e.clientX <= rect.right);
+            if (!isInDialog) {
+                modalElement.close();
+            }
+        });
+    };
+    closeOnOutsideClick(addModal);
+    closeOnOutsideClick(deleteModal);
+});
