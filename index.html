@@ -1,288 +1,38 @@
-<!DOCTYPE HTML>
-<HTML lang="ja">
+<!DOCTYPE html>
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./import.css">
-    <link rel="stylesheet" type="text/css" href="./index.css">
-    <title>ozawa's page on Github</title>
+    <title>oz-coden's Tools Hub</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-    <header id="main_header">
-        <div class="header_container">
-            <div class="header_title"><a href="https://oz-coden.github.io/"><img src="./image/TopPageIcon.png"
-                        alt="@oz_coden" class="toppage_icon"></a></div>
-        </div>
-        <input type="checkbox" id="header_button" class="header_button">
-        <label for="header_button" class="header_menu_icon"><span class="header_icon"></span></label>
-        <ul class="header_menu">
-            <li class="header_menu_top_item"><a href="#current_date">ホーム（ページの一番上に戻る）</a></li>
-            <li><a href="#toggle_menu_button_notion_schedule">スケジュール表</a></li>
-            <li><a href="#toggle_menu_button_pre_jindaisei">プレ神大生ページ</a></li>
-            <li><a href="#toggle_menu_button_toeic">TOEIC®</a></li>
-            <li><a href="#contact">著者情報</a></li>
-        </ul>
+    <header>
+        <h1>oz-coden's Tools</h1>
+        <p>公開中のツール一覧</p>
     </header>
 
-    <div id="top_filler" class="top_filler"></div>
-
-    <div class="content_container">
-
-        <div class="alert_notation">
-            <p class="" style="color: #cc0000; ">注意：このサイトは個人が作成したものであり、この中に含まれるすべての要素において正しいことを保証するわけではありません。</p>
-            <p>詳しくはご自身でお確かめください。</p>
-            <p class="text_align_right">更新日：2024/04/01</p>
-        </div>
-
-        <p>
-            <span id="current_date">
-                <script>
-                    date = new Date();
-                    year = date.getFullYear();
-                    month = date.getMonth() + 1;
-                    day = date.getDate();
-                    document.getElementById("current_date").innerHTML = "今日の日付は " + year + "/" + month + "/" + day + " です。";
-                </script>
-            </span>
-        </p>
-
-
-
-
-
-
-        <p>※▼テキスト▼と書いてある灰色の領域は、クリックまたはタップすることで開けます。</p>
-
-        <div>
-            <input type="checkbox" id="toggle_menu_button_useful_urls" class="toggle_menu_button">
-            <label class="toggle_menu_title" for="toggle_menu_button_useful_urls">▼神奈川大学の重要なリンク集▼</label>
-            <div id="useful_urls" class="toggle_menu_item">
-
-                <p>▼神奈川大学｜公式サイトTOP▼</p>
-                <p><a href="https://www.kanagawa-u.ac.jp/" target="_blank">https://www.kanagawa-u.ac.jp/</a></p>
-                <p>▼神奈川大学｜問い合わせ▼</p>
-                <p><a href="https://www.kanagawa-u.ac.jp/contact/" target="_blank">https://www.kanagawa-u.ac.jp/contact/</a></p>
-                
-                <p>▼神奈川大学｜プレ神大生▼</p>
-                <p><a href="https://www.kanagawa-u.ac.jp/prejindai" target="_blank">https://www.kanagawa-u.ac.jp/prejindai</a></p>
-                <p>▼神奈川大学｜学修スタートガイド（PDF）▼</p>
-                <p><a href="https://www.kanagawa-u.ac.jp/cr_att/0011/27480_90664_010.pdf" target="_blank">https://www.kanagawa-u.ac.jp/cr_att/0011/27480_90664_010.pdf</a></p>
-                
-                <p>▼神奈川大学｜WebSt@tion▼</p>
-                <p><a href="https://www.kanagawa-u.ac.jp/webstation/" target="_blank">https://www.kanagawa-u.ac.jp/webstation/</a>
-                <p>▼神奈川大学｜WebSt@tionマニュアル（Box）▼</p>
-                <p><a href="https://kanagawa-u.ent.box.com/s/cf6uqfsc9jz31y1g1k41wlsxrsqeu1a0" target="_blank">https://kanagawa-u.ent.box.com/s/cf6uqfsc9jz31y1g1k41wlsxrsqeu1a0</a></p>
-                <p>▼神奈川大学｜ガイダンス・履修登録ーオリエンテーション（Box）▼</p>
-                <p><a href="https://kanagawa-u.ent.box.com/s/x5861f6eg3j917j4a35x7ofif7v6khhk" target="_blank">https://kanagawa-u.ent.box.com/s/x5861f6eg3j917j4a35x7ofif7v6khhk</a></p>
-                <p>▼神奈川大学｜シラバス・履修要覧・時間割表▼</p>
-                <p><a href="https://webstation.kanagawa-u.ac.jp/html/kyoumu/index.html" target="_blank">https://webstation.kanagawa-u.ac.jp/html/kyoumu/index.html</a></p>
-                <p>▼神奈川大学｜時間割コードの説明資料（Box）▼</p>
-                <p><a href="https://kanagawa-u.ent.box.com/s/d0shn41dld1dwvnpoabtqaqzu0kj698w" target="_blank">https://kanagawa-u.ent.box.com/s/d0shn41dld1dwvnpoabtqaqzu0kj698w</a></p>
-
-                <hr>
-                
-                <p>▼神奈川大学生協▼</p>
-                <p><a href="https://www.ku-coop.org/" target="_blank">https://www.ku-coop.org/</a></p>
-                <p>▼神奈川大学生協｜営業日程・時間▼</p>
-                <p><a href="https://www.ku-coop.org/top/b_hours/" target="_blank">https://www.ku-coop.org/top/b_hours</a></p>
-
-                
-            </div>
-        </div>
-
-
-
-        
-        <div>
-            <input type="checkbox" id="toggle_menu_button_notion_schedule" class="toggle_menu_button">
-            <label class="toggle_menu_title" for="toggle_menu_button_notion_schedule">▼スケジュール表▼</label>
-            <div id="notion_schedule" class="toggle_menu_item">
-                <p>4/1は学生証交付日です。</p>
-                <p>4/3は入学式です。</p>
-                <div class="text_align_right">
-                    <a href="http://webcms3.kanagawa-u.ac.jp/cms-att/0011/bda2d57471bcbdba8e4f47d0e2b9f415.pdf"
-                        target="_blank">学修スタートガイドを確認する（押すとPDFがダウンロードされます／または、新しいタブで開きます）</a>
-                </div>
-            </div>
-        </div>
-
-
-
-
-        <div>
-            <input type="checkbox" id="toggle_menu_button_pre_jindaisei" class="toggle_menu_button">
-            <label class="toggle_menu_title" for="toggle_menu_button_pre_jindaisei">▼プレ神大生ページ▼</label>
-            <div id="pre_jindaisei" class="toggle_menu_item">
-                <p>毎回確認することをお忘れなく！もしかしたら更新があるかもしれません。</p>
-                <ul>
-                    <li>
-                        <p>健康診断についてのお知らせがあります。(3/25)</p>
-                        <p>4/2～健診当日朝8時までの間に回答することをお忘れなく。</p>
-                        
-                        <div class="text_align_right">
-                            <a href="https://www.kanagawa-u.ac.jp/prejindai/news/details_27525.html" target="_blank">確認する</a>
-                        </div>
-                    </li>
-                    <li>
-                        <p>
-                            郵送物についてのお知らせがあります。(3/4)
-                        </p>
-
-
-                        <div>
-                            <input type="checkbox" id="toggle_menu_button_detail_post" class="toggle_menu_button">
-                            <label class="toggle_menu_title" for="toggle_menu_button_detail_post">▼郵便物の詳細▼</label>
-                            <div id="detail_post" class="toggle_menu_item">
-
-                                <ul>
-
-                                    <li>新入生郵送物について（裏面：学生保険について）</li>
-                                    <li>入学式のご案内</li>
-                                    <li>神奈川大学へ入学される皆さんへ</li>
-                                    <li>学生情報入力マニュアル</li>
-                                    <li>学研災公式アプリ（Skett Book）登録案内用チラシ（兼加入者のしおりチラシ）</li>
-                                    <li>神奈川大学学生総合補償制度のご案内</li>
-                                    <li>宮陵会報 -祝入学-</li>
-                                    <li>神奈川大学資格取得講座ガイドブック</li>
-                                    <li>2024年度学修スタートガイド</li>
-
-                                </ul>
-
-                            </div>
-                        </div>
-
-
-
-                    </li>
-                    <li>
-                        <p>
-                            健康診断についてのお知らせがあります。(3/4)
-                        </p>
-                    </li>
-                </ul>
-
-
-
-
-
-                <div class="text_align_right">
-                    <a href="https://www.kanagawa-u.ac.jp/prejindai/" target="_blank">プレ神大生のページに飛んで確認する（新しいタブで開きます）</a>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-        <div>
-            <input type="checkbox" id="toggle_menu_button_toeic" class="toggle_menu_button">
-            <label class="toggle_menu_title" for="toggle_menu_button_toeic">▼TOEIC Bridge L&R▼</label>
-            <div id="toeic" class="toggle_menu_item">
-                <p>2024/03/22から英語プレイスメントテストが受けられます。</p>
-                <p>TOEIC BridgeはTOEICに比べてかなり優しい構成になっています。読みも聞きも、どちらもTOEICに比べると難しくありません。なので、ある程度の実力があれば問題ないと思います。</p>
-                <p>実際にTOEICとTOEIC Bridgeのリスニングの速度を聞いて比較してみると分かりやすいです。</p>
-
-                <p><a href="https://www.iibc-global.org/toeic/pr/bridge4skills/comparison.html"
-                        target="_blank">TOEIC®とTOEIC Bridge®の違いについて公式比較を見る</a></p>
-
-                <hr>
-
-                <div class="flexible_container">
-
-
-                    <div class="normal_buttonize">
-                        <a href="https://www.iibc-global.org/toeic/test/lr/about/format/sample01.html"
-                            class="normal_buttonize_item" target="_blank">TOEIC® L&R サンプル問題を見る</a>
-                    </div>
-
-                    <div class="normal_buttonize">
-                        <a href="https://www.iibc-global.org/toeic/test/bridge_lr/about/format/sample01.html"
-                            class="normal_buttonize_item" target="_blank">TOEIC Bridge® L&R サンプル問題を見る</a>
-                    </div>
-
-
-                </div>
-
-
-                <div class="nested_toggle_menu">
-                    <input type="checkbox" id="toggle_menu_button_eiken" class="toggle_menu_button">
-                    <label class="toggle_menu_title" for="toggle_menu_button_eiken">▼参考に英検も見る▼</label>
-                    <div id="eiken" class="toggle_menu_item">
-
-                        <p><a href="https://www.eiken.or.jp/eiken/" class="" target="_blank">英検公式サイトを確認する</a></p>
-                        <p><a href="https://www.eiken.or.jp/eiken/exam/" target="_blank">過去問一覧ページを見る</a></p>
-
-                    </div>
-
-
-
-
-
-                </div>
-
-                <div class="text_align_right">
-                    <a href="http://webcms3.kanagawa-u.ac.jp/cms-att/0011/bda2d57471bcbdba8e4f47d0e2b9f415.pdf"
-                        target="_blank">学修スタートガイドを確認する（押すとPDFがダウンロードされます／または、新しいタブで開きます）</a>
-                </div>
-
-            </div>
-
-
-
-           
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
-
-
-
-
-    <div class="content_container">
-        <p class="text_align_center">著者情報</p>
-        <hr>
-        <address id="contact">
-            <div>Twitter(X)： <a href="https://twitter.com/oz_coden" target="_blank">@Oz_coden</a></div>
-            <div>Instagram： <a href="https://www.instagram.com/oz_coden/" target="_blank">@oz_coden</a></div>
-            <div>Discord： @oz_coden</div>
-            <div>GitHub： <a href="https://github.com/oz-coden" target="_blank">@oz-coden</a></div>
-            <div>LINE OPENCHAT： <a href="https://line.me/ti/g2/2JOPBJLhyENTlcEQsu8DFTpM7J1wq7A25OC6FA" target="_blank">情報学部用オープンチャット</a></div>
+    <main class="card-container">
+        <div class="card-group">
+            <a href="https://oz-coden.github.io/tools/nexus-search/" class="card-main">
+                <h2>Nexus Search</h2>
+                <p>検索をメインに。簡易的な検索から、詳細な検索まで対応。検索エンジンの設定も可能。ブックマークを登録できる。</p>
+            </a>
             
-        </address>
-        <p>Copyright © 2024 oz_coden</p>
-    </div>
+        </div>
 
-
+        <div class="card-group">
+            <a href="https://oz-coden.github.io/tools/webpage-ide/" class="card-main">
+                <h2>Online Webpage IDE</h2>
+                <p>ブラウザ上で完結するWebpageのための開発環境。学習者向けに、環境構築等不要でHTML, CSS, JSの3つの最小限のファイルを編集可能で、即座に変更をプレビュー可能。</p>
+            </a>
+            <a href="https://github.com/oz-coden/simple-web-ide-for-webpage" class="card-github">
+                GitHub Repository ➔
+            </a>
+        </div>
+    </main>
 </body>
 
-</HTML>
+</html>
