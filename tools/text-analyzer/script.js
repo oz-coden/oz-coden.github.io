@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
     const textInput = document.getElementById('text-input');
     const elReadingTime = document.getElementById('count-reading-time');
     const elManuscript = document.getElementById('count-manuscript');
@@ -70,42 +69,48 @@ document.addEventListener("DOMContentLoaded", () => {
             window.analyzedTokens = [];
         }
     });
+
     window.tokenizer = null;
     window.analyzedTokens = [];
 
+    const setupUi = document.getElementById('setup-ui');
+    const loadDictBtn = document.getElementById('load-dict-btn');
     const loadingMsg = document.getElementById('loading-msg');
     const analyzeUi = document.getElementById('analyze-ui');
     const analyzeBtn = document.getElementById('analyze-btn');
     const resultArea = document.getElementById('analysis-result');
     const posFilters = document.querySelectorAll('.pos-filter');
 
-    setTimeout(() => {
-        loadingMsg.innerText = "⏳ 単語分析エンジン(Kuromoji)の辞書を読み込み中...";
+    loadDictBtn.addEventListener('click', () => {
+        setupUi.style.display = 'none';
+        loadingMsg.style.display = 'block';
 
-        const script = document.createElement('script');
-        script.src = "https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js";
+        setTimeout(() => {
+            const script = document.createElement('script');
+            script.src = "https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js";
 
-        script.onload = () => {
-            // スクリプト自体の読み込み成功後、辞書データのビルドを開始
-            kuromoji.builder({ dicPath: "https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/dict" }).build((err, _tokenizer) => {
-                if (err) {
-                    console.error("辞書エラー", err);
-                    loadingMsg.innerText = "❌ 辞書の読み込みに失敗しました。";
-                    return;
-                }
-                window.tokenizer = _tokenizer;
-                loadingMsg.style.display = 'none';
-                analyzeUi.style.display = 'block';
-            });
-        };
+            script.onload = () => {
+                kuromoji.builder({ dicPath: "https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/dict" }).build((err, _tokenizer) => {
+                    if (err) {
+                        console.error("辞書エラー", err);
+                        loadingMsg.innerText = "❌ 辞書の読み込みに失敗しました。";
+                        return;
+                    }
+                    window.tokenizer = _tokenizer;
+                    loadingMsg.style.display = 'none';
+                    analyzeUi.style.display = 'block';
+                });
+            };
 
-        script.onerror = () => {
-            loadingMsg.innerText = "❌ 分析エンジンのネットワーク読み込みに失敗しました。";
-        };
+            script.onerror = () => {
+                loadingMsg.innerText = "❌ 解析エンジンのネットワーク読み込みに失敗しました。";
+            };
 
-        document.body.appendChild(script);
-    }, 1000);
+            document.body.appendChild(script);
+        }, 100);
+    });
 
+    // 分析の実行
     analyzeBtn.addEventListener('click', () => {
         const text = textInput.value;
         if (!window.tokenizer || !text.trim()) return;
