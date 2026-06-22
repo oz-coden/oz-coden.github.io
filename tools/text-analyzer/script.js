@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
     const textInput = document.getElementById('text-input');
     const elReadingTime = document.getElementById('count-reading-time');
     const elManuscript = document.getElementById('count-manuscript');
@@ -39,24 +40,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const minutes = Math.floor(totalSeconds / 60);
         const seconds = totalSeconds % 60;
 
-        if (minutes > 0) {
-            elReadingTime.innerText = `約 ${minutes}分 ${seconds}秒`;
-        } else {
-            elReadingTime.innerText = `約 ${seconds}秒`;
-        }
+        elReadingTime.innerText = minutes > 0 ? `約 ${minutes}分 ${seconds}秒` : `約 ${seconds}秒`;
 
         const lines = text.split(/\n/);
         let manuscriptTotalLines = 0;
         for (let i = 0; i < lines.length; i++) {
             const lineLength = lines[i].length;
-            if (lineLength === 0) {
-                manuscriptTotalLines += 1;
-            } else {
-                manuscriptTotalLines += Math.ceil(lineLength / 20);
-            }
+            manuscriptTotalLines += lineLength === 0 ? 1 : Math.ceil(lineLength / 20);
         }
-        const manuscriptPages = Math.ceil(manuscriptTotalLines / 20);
-        elManuscript.innerText = `${manuscriptPages}枚`;
+        elManuscript.innerText = `${Math.ceil(manuscriptTotalLines / 20)}枚`;
     }
 
     textInput.addEventListener('input', updateCounts);
@@ -66,61 +58,66 @@ document.addEventListener("DOMContentLoaded", () => {
             textInput.value = '';
             updateCounts();
             document.getElementById('analysis-result').innerHTML = '';
-            window.analyzedTokens = [];
+            window.cachedTokens = [];
         }
     });
 
-    window.tokenizer = null;
-    window.analyzedTokens = [];
+    let worker = null;
+    window.cachedTokens = [];
 
-    const setupUi = document.getElementById('setup-ui');
     const loadDictBtn = document.getElementById('load-dict-btn');
     const loadingMsg = document.getElementById('loading-msg');
+    const setupUi = document.getElementById('setup-ui');
     const analyzeUi = document.getElementById('analyze-ui');
     const analyzeBtn = document.getElementById('analyze-btn');
+    const analyzingMsg = document.getElementById('analyzing-msg');
     const resultArea = document.getElementById('analysis-result');
     const posFilters = document.querySelectorAll('.pos-filter');
 
     loadDictBtn.addEventListener('click', () => {
-        setupUi.style.display = 'none';
-        loadingMsg.style.display = 'block';
+        loadDictBtn.disabled = true;
+        loadingMsg.style.display = 'inline';
 
-        setTimeout(() => {
-            const script = document.createElement('script');
-            script.src = "https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js";
+        worker = new Worker('worker.js');
 
-            script.onload = () => {
-                kuromoji.builder({ dicPath: "https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/dict" }).build((err, _tokenizer) => {
-                    if (err) {
-                        console.error("辞書エラー", err);
-                        loadingMsg.innerText = "❌ 辞書の読み込みに失敗しました。";
-                        return;
-                    }
-                    window.tokenizer = _tokenizer;
-                    loadingMsg.style.display = 'none';
-                    analyzeUi.style.display = 'block';
-                });
-            };
+        worker.addEventListener('message', (e) => {
+            const data = e.data;
 
-            script.onerror = () => {
-                loadingMsg.innerText = "❌ 解析エンジンのネットワーク読み込みに失敗しました。";
-            };
+            if (data.type === 'READY') {
+                setupUi.style.display = 'none';
+                analyzeUi.style.display = 'block';
+            }
 
-            document.body.appendChild(script);
-        }, 100);
+            else if (data.type === 'RESULT') {
+                window.cachedTokens = data.tokens; 
+                analyzingMsg.style.display = 'none';
+                analyzeBtn.disabled = false;
+                renderAnalysis(); 
+            }
+
+            else if (data.type === 'ERROR') {
+                loadingMsg.innerText = "❌ 辞書の読み込みに失敗しました: " + data.message;
+                loadDictBtn.disabled = false;
+            }
+        });
+
+        worker.postMessage({ type: 'INIT' });
     });
 
-    // 分析の実行
     analyzeBtn.addEventListener('click', () => {
         const text = textInput.value;
-        if (!window.tokenizer || !text.trim()) return;
-        window.analyzedTokens = window.tokenizer.tokenize(text);
-        renderAnalysis();
+        if (!worker || !text.trim()) return;
+
+        analyzeBtn.disabled = true;
+        analyzingMsg.style.display = 'inline';
+        resultArea.innerHTML = '';
+
+        worker.postMessage({ type: 'ANALYZE', text: text });
     });
 
     posFilters.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
-            if (window.analyzedTokens.length > 0) {
+            if (window.cachedTokens.length > 0) {
                 renderAnalysis();
             }
         });
@@ -134,8 +131,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const wordCounts = {};
         const wordPosMap = {};
 
-        window.analyzedTokens.forEach(token => {
-            if (selectedPos.includes(token.pos) && token.pos !== "記号" && token.pos_detail_1 !== "非自立" && token.pos_detail_1 !== "数") {
+        window.cachedTokens.forEach(token => {
+            if (selectedPos.includes(token.pos)) {
                 const word = (token.basic_form && token.basic_form !== '*') ? token.basic_form : token.surface_form;
                 wordCounts[word] = (wordCounts[word] || 0) + 1;
                 wordPosMap[word] = token.pos;
