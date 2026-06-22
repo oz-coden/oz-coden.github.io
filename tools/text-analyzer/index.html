@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字数・形態素解析</title>
+    <script>
+        (function () {
+            var theme = localStorage.getItem('oz_tools_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="../../common.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="../../common.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <header class="header">
+            <button class="theme-toggle-btn" aria-label="テーマ切り替え">🌙</button>
+            <h1>文字数・形態素解析</h1>
+        </header>
+        <textarea id="text-input" placeholder="ここにテキストを入力してください..."></textarea>
+        <span class="shortcut-hint">💡 入力欄で Escキー を押すとテキストをクリアします</span>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value text-md" id="count-reading-time">0秒</div>
+                <div class="stat-label">読了予測 (500字/分)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="count-manuscript">0</div>
+                <div class="stat-label">原稿用紙 (400字/枚)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="count-chars-all">0</div>
+                <div class="stat-label">文字数 (空白含む)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="count-chars">0</div>
+                <div class="stat-label">文字数 (空白除く)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="count-lines">0</div>
+                <div class="stat-label">行数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="count-paragraphs">0</div>
+                <div class="stat-label">段落数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="count-sentences">0</div>
+                <div class="stat-label">文章数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="count-punctuation">0</div>
+                <div class="stat-label">句読点の数</div>
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <div id="morph-controls">
+                <span id="loading-msg">⏳ 単語分析エンジン(Kuromoji)の辞書を読み込み中...</span>
+
+                <div id="analyze-ui" style="display: none;">
+                    <button id="analyze-btn">📊 単語の出現頻度を分析</button>
+
+                    <div class="filter-group">
+                        <span style="font-size: 0.8rem; color: var(--c-text-sub); width: 100%;">抽出する品詞（複数選択可）:</span>
+                        <label><input type="checkbox" class="pos-filter" value="名詞" checked> 名詞</label>
+                        <label><input type="checkbox" class="pos-filter" value="動詞"> 動詞</label>
+                        <label><input type="checkbox" class="pos-filter" value="形容詞"> 形容詞</label>
+                        <label><input type="checkbox" class="pos-filter" value="副詞"> 副詞</label>
+                    </div>
+                </div>
+            </div>
+            <ul id="analysis-result" class="result-list"></ul>
+        </div>
+
+        <footer class="footer">
+            Powered by <a href="https://github.com/takuyaa/kuromoji.js" target="_blank"
+                rel="noopener noreferrer">kuromoji.js</a> (Apache License 2.0)
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -5,11 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>oz-coden's Tools Hub</title>
+    <script>
+        (function () {
+            var theme = localStorage.getItem('oz_tools_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="style.css">
+    <script src="common.js" defer></script>
+    <!--script src="script.js" defer></script-->
+
 </head>
 
 <body>
-    <header>
+    <header style="position: relative; width: 90%; max-width: 1000px;">
+        <button class="theme-toggle-btn" aria-label="テーマ切り替え">🌙</button>
         <h1>oz-coden's Tools</h1>
         <p>公開中のツール一覧</p>
     </header>
@@ -33,9 +44,12 @@
         </div>
 
         <div class="card-group">
-            <a href="https://github.com/oz-coden/japanese-localization-for-pmmo-v-1.20.1-1.7.40" class="card-main">
+            <a href="https://github.com/oz-coden/japanese-localization-for-pmmo-v-1.20.1-1.7.40/releases" class="card-main">
                 <h2>Project MMO用日本語化リソースパック</h2>
                 <p>Project MMOが(おそらく)最新のバージョンだと日本語化に対応していないため、その日本語化を実施するための非公式的なリソースパック。</p>
+            </a>
+            <a href="https://github.com/oz-coden/japanese-localization-for-pmmo-v-1.20.1-1.7.40" class="card-github">
+                GitHub Repository ➔
             </a>
         </div>
     </main>

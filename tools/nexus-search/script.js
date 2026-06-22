@@ -1,18 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const htmlEl = document.documentElement;
     const engineSelect = document.getElementById("search_engine");
-
-    const themeBtn = document.getElementById("theme_toggle");
-    const savedTheme = localStorage.getItem("theme") || "light";
-    htmlEl.setAttribute("data-theme", savedTheme);
-    themeBtn.textContent = savedTheme === "light" ? "🌙" : "☀️";
-
-    themeBtn.addEventListener("click", () => {
-        const newTheme = htmlEl.getAttribute("data-theme") === "light" ? "dark" : "light";
-        htmlEl.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
-        themeBtn.textContent = newTheme === "light" ? "🌙" : "☀️";
-    });
 
     const savedEngine = localStorage.getItem("search_engine_pref");
     if (savedEngine) engineSelect.value = savedEngine;
@@ -65,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     document.getElementById("search_button").addEventListener("click", () => executeSearch(searchInput.value));
+    
     searchInput.addEventListener("keydown", (e) => {
         if (e.key === "Enter") executeSearch(searchInput.value);
     });

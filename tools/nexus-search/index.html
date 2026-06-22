@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="ja" data-theme="light">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexus Search</title>
+    <script>
+        (function () {
+            var theme = localStorage.getItem('oz_tools_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="../../common.css">
     <link rel="stylesheet" href="style.css">
+    <script src="../../common.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
+
 <body>
     <main class="container">
-        <header class="header">
-            <button id="theme_toggle" class="btn-icon theme-toggle" aria-label="テーマ切り替え">🌙</button>
-            <h1>Nexus Search</h1>
-        </header>
+        <section class="card">
+            <header class="header">
+                <button class="theme-toggle-btn" aria-label="テーマ切り替え">🌙</button>
+                <h1>Nexus Search</h1>
+            </header>
+        </section>
 
         <section class="card">
             <div class="search-box">
@@ -63,15 +75,16 @@
     <dialog id="bookmark_modal" class="modal">
         <form id="bookmark_form" class="modal-content">
             <h3>ブックマークを追加</h3>
-            <label>サイト名: 
+            <label>サイト名:
                 <input type="text" id="modal_title" placeholder="例: GitHub">
             </label>
-            <label>URL: 
+            <label>URL:
                 <input type="url" id="modal_url" placeholder="例: https://github.com">
             </label>
             <div class="modal-actions">
                 <button type="button" id="modal_cancel" class="btn-cancel">キャンセル</button>
-                <button type="submit" id="modal_save" class="btn-primary" style="width: auto; margin-top: 0;">保存</button>
+                <button type="submit" id="modal_save" class="btn-primary"
+                    style="width: auto; margin-top: 0;">保存</button>
             </div>
         </form>
     </dialog>
@@ -82,11 +95,12 @@
             <p id="delete_target_name" style="margin-top: 0; margin-bottom: 20px;"></p>
             <div class="modal-actions">
                 <button type="button" id="delete_cancel" class="btn-cancel">キャンセル</button>
-                <button type="button" id="delete_execute" class="btn-danger" style="width: auto; margin-top: 0;">削除する</button>
+                <button type="button" id="delete_execute" class="btn-danger"
+                    style="width: auto; margin-top: 0;">削除する</button>
             </div>
         </div>
     </dialog>
 
-    <script src="./script.js"></script>
 </body>
+
 </html>
