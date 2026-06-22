@@ -1,0 +1,119 @@
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: var(--c-bg-card);
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--c-border);
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--c-text-sub);
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--c-bg-main);
+    color: var(--c-text-main);
+    border: 1px solid var(--c-border);
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--c-accent);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 200px;
+    font-family: inherit;
+}
+
+.row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.row>div {
+    flex: 1;
+}
+
+.btn-primary {
+    background-color: var(--c-accent);
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-primary:active {
+    transform: translateY(2px);
+}
+
+.hidden {
+    display: none;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.btn-copy {
+    background: transparent;
+    color: var(--c-accent);
+    border: 1px solid var(--c-accent);
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-copy:hover {
+    background-color: var(--c-bg-main);
+}

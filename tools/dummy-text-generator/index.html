@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ダミーテキストジェネレーター</title>
+    <script>
+        (function () {
+            var theme = localStorage.getItem('oz_tools_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="../../common.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="../../common.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header-area">
+            <h1>ダミーテキストジェネレーター</h1>
+            <button class="theme-toggle-btn" aria-label="テーマ切り替え">🌙</button>
+        </div>
+
+        <div class="row">
+            <div>
+                <label for="textSource">使用する文字列</label>
+                <select id="textSource">
+                    <option value="ihatov">あのイーハトーヴォの...冒頭（宮沢賢治）</option>
+                    <option value="merosu">メロスは激怒した...冒頭（川端康成）</option>
+                    <option value="wagahai">吾輩は猫である...冒頭（夏目漱石）</option>
+                    <option value="lorem">Lorem ipsum...冒頭</option>
+                    <option value="custom">カスタム文字列</option>
+                </select>
+            </div>
+            <div id="customInputWrapper" class="hidden">
+                <label for="customString">カスタム文字列を入力</label>
+                <input type="text" id="customString" placeholder="繰り返す文字列を入力してください">
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <label for="generateMode">出力の条件</label>
+                <select id="generateMode">
+                    <option value="length">指定した「文字数」まで出力</option>
+                    <option value="repeat">指定した「回数」繰り返す</option>
+                </select>
+            </div>
+            <div>
+                <label for="countValue" id="countLabel">文字数</label>
+                <input type="number" id="countValue" value="400" min="1">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn-primary" onclick="generateText()">テキストを生成する</button>
+        </div>
+
+        <div class="form-group" style="margin-top: 32px;">
+            <div class="result-header">
+                <label for="outputText" style="margin-bottom: 0;">生成結果</label>
+                <button class="btn-copy" onclick="copyToClipboard()" id="copyBtn">クリップボードにコピー</button>
+            </div>
+            <textarea id="outputText" readonly placeholder="ここに生成されたダミーテキストが表示されます..."></textarea>
+        </div>
+    </div>
+
+</body>
+
+</html>
