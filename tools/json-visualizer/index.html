@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Path Visualizer</title>
+    <script>
+        (function () {
+            var theme = localStorage.getItem('oz_tools_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="../../common.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="../../common.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>JSON Path Visualizer</h1>
+        <button class="theme-toggle-btn"></button>
+    </div>
+
+    <div class="container">
+        <div class="panel">
+            <h2>JSONを入力... (ファイル可)</h2>
+            <textarea id="jsonInput" spellcheck="false" placeholder="ここにJSONを貼り付けるか、ファイルをドラッグ＆ドロップしてください">
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "DDD",
+        " S ",
+        " S "
+    ],
+    "key": {
+        "D": {
+            "item": "minecraft:dirt"
+        },
+        "S": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "dirtymod:dirt_pickaxe"
+    }
+}
+            </textarea>
+            <div class="button-group">
+                <button class="btn action-btn" onclick="parseAndVisualize()">解析する...</button>
+                <button class="btn reset-btn" onclick="resetAll()">リセット</button>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>JavaScriptでのアクセスパス</h2>
+            <div id="outputArea"></div>
+        </div>
+    </div>
+</body>
+
+</html>

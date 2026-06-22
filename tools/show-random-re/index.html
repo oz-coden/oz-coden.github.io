@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegEx Builder & Generator</title>
+    <script>
+        (function () {
+            var theme = localStorage.getItem('oz_tools_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="../../common.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="../../common.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/fent/randexp.js@0.5.3/build/randexp.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h2>正規表現ランダムジェネレーター</h2>
+            <button class="theme-toggle-btn"></button>
+        </div>
+
+        <div class="input-group">
+            <label>正規表現パターン</label>
+            <div class="regex-inputs">
+                <span>/</span>
+                <input type="text" id="regex-pattern" placeholder="正規表現を入力..." value="^[a-zA-Z0-9]{5,10}$">
+                <span>/</span>
+                <input type="text" id="regex-flags" class="flags-input" placeholder="フラグ" value="g">
+            </div>
+        </div>
+
+        <button id="generate-btn" class="action-btn">正規表現に当てはまる候補を自動生成</button>
+
+        <div class="input-group" style="margin-top: 20px;">
+            <label>生成結果：</label>
+            <div id="output-area" class="output-box">ここに正規表現に当てはまる自動生成された文字列が表示されます。</div>
+        </div>
+
+        <div class="guide-section">
+            <h3>正規表現クイックガイド</h3>
+            <table>
+                <tr>
+                    <th>表現</th>
+                    <th>意味</th>
+                    <th>例</th>
+                </tr>
+                <tr>
+                    <td><code>.</code></td>
+                    <td>任意の1文字</td>
+                    <td><code>a.c</code> (abc, a1c)</td>
+                </tr>
+                <tr>
+                    <td><code>*</code></td>
+                    <td>0回以上の繰り返し</td>
+                    <td><code>a*b</code> (b, ab, aaab)</td>
+                </tr>
+                <tr>
+                    <td><code>+</code></td>
+                    <td>1回以上の繰り返し</td>
+                    <td><code>a+b</code> (ab, aaab)</td>
+                </tr>
+                <tr>
+                    <td><code>?</code></td>
+                    <td>0回または1回</td>
+                    <td><code>a?b</code> (b, ab)</td>
+                </tr>
+                <tr>
+                    <td><code>\d</code></td>
+                    <td>数字 (0-9)</td>
+                    <td><code>\d{3}</code> (123)</td>
+                </tr>
+                <tr>
+                    <td><code>\w</code></td>
+                    <td>英数字とアンダースコア</td>
+                    <td><code>\w+</code> (ez_we3)</td>
+                </tr>
+                <tr>
+                    <td><code>^</code> / <code>$</code></td>
+                    <td>行の先頭 / 行の末尾</td>
+                    <td><code>^abc$</code> (完全一致)</td>
+                </tr>
+                <tr>
+                    <td><code>[abc]</code></td>
+                    <td>a, b, c のいずれか1文字</td>
+                    <td><code>[a-z]</code> (小文字の英字)</td>
+                </tr>
+                <tr>
+                    <td><code>a|b</code></td>
+                    <td>a または b</td>
+                    <td><code>cat|dog</code></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <footer style="text-align: center; margin-top: 40px; font-size: 12px; color: var(--c-text-sub);">
+        <p>Powered by <a href="https://github.com/fent/randexp.js" target="_blank" rel="noopener noreferrer"
+                style="color: var(--c-accent); text-decoration: none;">randexp.js</a> (MIT License)</p>
+    </footer>
+</body>
+
+</html>

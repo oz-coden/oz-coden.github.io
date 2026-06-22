@@ -1,0 +1,121 @@
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: var(--c-bg-card);
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--c-border);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--c-border);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+button.action-btn {
+    background-color: var(--c-accent);
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: opacity 0.2s;
+}
+
+button.action-btn:hover {
+    opacity: 0.8;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.regex-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    background-color: var(--c-bg-main);
+    color: var(--c-text-main);
+    font-size: 16px;
+    font-family: monospace;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--c-accent);
+}
+
+.flags-input {
+    width: 80px !important;
+}
+
+.output-box {
+    background-color: var(--c-bg-main);
+    border: 1px solid var(--c-border);
+    padding: 15px;
+    border-radius: 4px;
+    min-height: 2rem;
+    margin-bottom: 20px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: var(--c-text-sub);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.guide-section {
+    margin-top: 40px;
+    border-top: 2px solid var(--c-border);
+    padding-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th,
+td {
+    border: 1px solid var(--c-border);
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--c-bg-main);
+}
+
+td {
+    color: var(--c-text-sub);
+}
+
+.error {
+    color: var(--c-danger);
+    font-weight: bold;
+}
