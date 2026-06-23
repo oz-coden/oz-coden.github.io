@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>oz-coden's Tools Hub</title>
+    <title>oz-coden's Tools & Repositories Hub</title>
     <script>
         (function () {
             var theme = localStorage.getItem('oz_tools_theme') || 'light';
@@ -21,8 +21,8 @@
 <body>
     <header style="position: relative; width: 90%; max-width: 1000px;">
         <button class="theme-toggle-btn" aria-label="テーマ切り替え">🌙</button>
-        <h1>oz-coden's Tools</h1>
-        <p>公開中のツール一覧</p>
+        <h1>oz-coden's Tools & Repositories</h1>
+        <p>公開中のツール・リポジトリ一覧</p>
     </header>
 
     <main class="card-container">
@@ -72,12 +72,34 @@
         </div>
 
         <div class="card-group">
+            <a href="https://github.com/oz-coden/send-weather-info-to-discord"
+                class="card-main">
+                <h2>天気予報通知スクリプト</h2>
+                <p>Discord向けに、WebhookとWeather APIを使用して今日の天気情報を教えてくれるスクリプト。Google Apps Script上で、トリガーを設定すると簡単に利用可能。</p>
+            </a>
+            <a href="https://github.com/oz-coden/send-weather-info-to-discord" class="card-github">
+                GitHub Repository ➔
+            </a>
+        </div>
+
+        <div class="card-group">
             <a href="https://github.com/oz-coden/japanese-localization-for-pmmo-v-1.20.1-1.7.40/releases"
                 class="card-main">
                 <h2>Project MMO用日本語化リソースパック</h2>
                 <p>Project MMOが(おそらく)最新のForge向けバージョンだと日本語化に対応していないため、その日本語化を実施するための非公式的なリソースパック。</p>
             </a>
             <a href="https://github.com/oz-coden/japanese-localization-for-pmmo-v-1.20.1-1.7.40" class="card-github">
+                GitHub Repository ➔
+            </a>
+        </div>
+
+        <div class="card-group">
+            <a href="https://github.com/oz-coden/ku-syllabus-json-parser"
+                class="card-main">
+                <h2>KUシラバスJSONパーサー</h2>
+                <p>シラバスの情報を取得して、JSON形式に変換して提供できるようにするための実験的なプロジェクト。</p>
+            </a>
+            <a href="https://github.com/oz-coden/ku-syllabus-json-parser" class="card-github">
                 GitHub Repository ➔
             </a>
         </div>
